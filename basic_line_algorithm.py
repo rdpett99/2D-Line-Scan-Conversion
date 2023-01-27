@@ -33,7 +33,7 @@ def draw_line(x0, y0, x1, y1):
 
         # Critical loop
         for y_coord in range(abs(y1 - y0)):
-            image.putpixel((x0, y_min + y_coord), (255, 255, 255))
+            image.putpixel((x0, y_min + y_coord), (255, 0, 255))
         
         # Stops timer
         end_time = decimal.Decimal(time.time())
