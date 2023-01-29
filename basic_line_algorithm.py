@@ -25,7 +25,12 @@ def draw_line(x0, y0, x1, y1):
     This function draws a line starting at point (x0, y0) and ending at point 
     (x1, y1) in a standard coordinate system. While lines are being drawn, this
     function also keeps track of the amount of time it takes to draw all lines
-    and displays it to the user.
+    so it can be later displayed for the user.
+
+    Returns
+    -------
+    draw_time
+        total time it takes to draw all lines
 
     '''
 
