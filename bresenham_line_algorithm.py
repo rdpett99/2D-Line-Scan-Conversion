@@ -1,6 +1,6 @@
 '''
-This program implements a basic line scan-conversion (line drawing)
-algorithm. This program uses the Python Imaging Library in order to
+This program implements Bresenham's Line Drawing algorithm.
+This program uses the Python Imaging Library in order to
 assist with line drawing.
 
 '''
