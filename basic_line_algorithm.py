@@ -9,23 +9,36 @@ assist with line drawing.
 import math
 import time
 import decimal
+from random import randint
 
-# Python Imaging Library
+# Image module from the Python Imaging Library
 from PIL import Image
 
 # Creates an empty black image
-image = Image.new(mode="RGB", size = (250, 250), color = (0,0,0))
+image = Image.new(mode = "RGB", size = (500, 500), color = (0,0,0))
+
+# Used to round the timer to 5 significant figures
 decimal.getcontext().prec = 5
 
-'''
-This function draws a line starting at point (x0, y0) and ending at point 
-(x1, y1) in a standard coordinate system.
-
-'''
 def draw_line(x0, y0, x1, y1):
+    '''
+    This function draws a line starting at point (x0, y0) and ending at point 
+    (x1, y1) in a standard coordinate system. While lines are being drawn, this
+    function also keeps track of the amount of time it takes to draw all lines
+    and displays it to the user.
+
+    '''
+
+    # Used for calculating total time to draw all the given lines
+    draw_time = 0
+
+    # Assigns random RGB values to differenciate between different drawn lines.
+    r = randint(0,255)
+    g = randint(0,255)
+    b = randint(0,255)
+
     # If x0 == x1 : the line is vertical
-    if x0 == x1 and y0 != y1:
-        # Need the smallest y value to know if line is going up or down
+    if x0 == x1:
         y_min = min(y0, y1)
 
         # Starts the timer for the critical loop
@@ -33,13 +46,67 @@ def draw_line(x0, y0, x1, y1):
 
         # Critical loop
         for y_coord in range(abs(y1 - y0)):
-            image.putpixel((x0, y_min + y_coord), (255, 0, 255))
+            image.putpixel((x0, y_min + y_coord), (r, g, b))
         
         # Stops timer
         end_time = decimal.Decimal(time.time())
 
-        # Debug
-        print(f'Loop took {end_time - start_time} seconds long.')
-        image.show()
+        total_time = end_time - start_time
+        draw_time += total_time
+    
+    # Else, the line is not vertical
+    else:
+        # Calculates the slope and y-intercept
+        slope = (y1 - y0) / (x1 - x0)
+        y_intercept = y1 - (slope * x1)
 
-draw_line(50, 50, 50, 100)
+        # Check if |x1 - x0| >= |y1 - y0|
+        if (abs(x1 - x0) >= abs(y1 - y0)):
+            x_min = min(x0, x1)
+
+            # Starts timer
+            start_time = decimal.Decimal(time.time())
+
+            # Critical loop
+            for x_coord in range(abs(x1 - x0) + 1):
+                x = x_min + x_coord
+                y = (slope * x) + y_intercept
+                y = math.trunc(y)
+                image.putpixel((x, y), (r, g, b))
+            
+            # Stops timer
+            end_time = decimal.Decimal(time.time())
+
+            total_time = end_time - start_time
+            draw_time += total_time
+
+        # Check if |x1 - x0| < |y1 - y0|
+        elif (abs(x1 - x0) < abs(y1 - y0)):
+            y_min = min(y0, y1)
+
+            # Starts timer
+            start_time = decimal.Decimal(time.time())
+
+            # Critical loop
+            for y_coord in range(abs(y1 - y0) + 1):
+                y = y_min + y_coord
+                x = (y - y_intercept) / slope
+                x = math.trunc(x)
+                image.putpixel((x, y), (r, g, b))
+            
+            # Stops timer
+            end_time = decimal.Decimal(time.time())
+
+            total_time = end_time - start_time
+            draw_time += total_time
+
+    return draw_time
+
+# Debug
+total = 0
+total += draw_line(50, 100, 50, 200)
+total += draw_line(75, 75, 237, 100)
+total += draw_line(85, 45, 337, 20)
+
+print(f'Loop took {total} seconds long.')
+image.show()
