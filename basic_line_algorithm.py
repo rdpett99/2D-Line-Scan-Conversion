@@ -47,14 +47,14 @@ def draw_line(x0, y0, x1, y1):
         y_min = min(y0, y1)
 
         # Starts the timer for the critical loop
-        start_time = decimal.Decimal(time.time())
+        start_time = decimal.Decimal(time.perf_counter())
 
         # Critical loop
         for y_coord in range(abs(y1 - y0)):
             image.putpixel((x0, y_min + y_coord), (r, g, b))
         
         # Stops timer
-        end_time = decimal.Decimal(time.time())
+        end_time = decimal.Decimal(time.perf_counter())
 
         total_time = end_time - start_time
         draw_time += total_time
@@ -70,7 +70,7 @@ def draw_line(x0, y0, x1, y1):
             x_min = min(x0, x1)
 
             # Starts timer
-            start_time = decimal.Decimal(time.time())
+            start_time = decimal.Decimal(time.perf_counter())
 
             # Critical loop
             for x_coord in range(abs(x1 - x0) + 1):
@@ -80,7 +80,7 @@ def draw_line(x0, y0, x1, y1):
                 image.putpixel((x, y), (r, g, b))
             
             # Stops timer
-            end_time = decimal.Decimal(time.time())
+            end_time = decimal.Decimal(time.perf_counter())
 
             total_time = end_time - start_time
             draw_time += total_time
@@ -90,7 +90,7 @@ def draw_line(x0, y0, x1, y1):
             y_min = min(y0, y1)
 
             # Starts timer
-            start_time = decimal.Decimal(time.time())
+            start_time = decimal.Decimal(time.perf_counter())
 
             # Critical loop
             for y_coord in range(abs(y1 - y0) + 1):
@@ -100,7 +100,7 @@ def draw_line(x0, y0, x1, y1):
                 image.putpixel((x, y), (r, g, b))
             
             # Stops timer
-            end_time = decimal.Decimal(time.time())
+            end_time = decimal.Decimal(time.perf_counter())
 
             total_time = end_time - start_time
             draw_time += total_time
