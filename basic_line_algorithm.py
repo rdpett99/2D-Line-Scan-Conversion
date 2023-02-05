@@ -27,7 +27,7 @@ def draw_line(x0, y0, x1, y1):
     Returns
     -------
     draw_time
-        total time it takes to draw all lines
+        total time it takes to draw one line
 
     '''
 
@@ -61,6 +61,7 @@ def draw_line(x0, y0, x1, y1):
     
     # Else, the line is not vertical
     else:
+        
         # Calculates the slope and y-intercept
         slope = (y1 - y0) / (x1 - x0)
         y_intercept = y1 - (slope * x1)
