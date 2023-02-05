@@ -6,7 +6,6 @@ assist with line drawing.
 '''
 
 # Standard Libraries
-import math
 import time
 from decimal import Decimal, getcontext
 from random import randint
