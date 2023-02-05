@@ -17,9 +17,6 @@ from PIL import Image
 # Creates an empty black image
 image = Image.new(mode = "RGB", size = (500, 500), color = (0,0,0))
 
-# Used to round the timer to 5 significant figures
-getcontext().prec = 5
-
 def draw_line(x0, y0, x1, y1):
     '''
     This function draws a line starting at point (x0, y0) and ending at point 
@@ -36,6 +33,9 @@ def draw_line(x0, y0, x1, y1):
 
     # Used for calculating total time to draw all the given lines
     draw_time = 0
+
+    # Used to round the timer to 5 significant figures
+    getcontext().prec = 5
 
     # Assigns random RGB values to differenciate between different drawn lines.
     r = randint(0,255)

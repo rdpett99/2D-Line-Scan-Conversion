@@ -8,7 +8,7 @@ assist with line drawing.
 # Standard Libraries
 import math
 import time
-import decimal
+from decimal import Decimal, getcontext
 from random import randint
 
 # Image module from the Python Imaging Library
@@ -16,9 +16,6 @@ from PIL import Image
 
 # Creates an empty black image
 image = Image.new(mode = "RGB", size = (500, 500), color = (0,0,0))
-
-# Used to round the timer to 5 significant figures
-decimal.getcontext().prec = 5
 
 def bresenham_alg(x0, y0, x1, y1):
     '''
@@ -37,7 +34,12 @@ def bresenham_alg(x0, y0, x1, y1):
     # Used for calculating total time to draw all the given lines
     draw_time = 0
 
+    # Used to round the timer to 5 significant figures
+    getcontext().prec = 5
+
     # Assigns random RGB values to differenciate between different drawn lines.
     r = randint(0,255)
     g = randint(0,255)
     b = randint(0,255)
+
+    return draw_time
