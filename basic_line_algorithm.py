@@ -8,7 +8,7 @@ assist with line drawing.
 # Standard Libraries
 import math
 import time
-import decimal
+from decimal import Decimal, getcontext
 from random import randint
 
 # Image module from the Python Imaging Library
@@ -18,7 +18,7 @@ from PIL import Image
 image = Image.new(mode = "RGB", size = (500, 500), color = (0,0,0))
 
 # Used to round the timer to 5 significant figures
-decimal.getcontext().prec = 5
+getcontext().prec = 5
 
 def draw_line(x0, y0, x1, y1):
     '''
@@ -47,17 +47,17 @@ def draw_line(x0, y0, x1, y1):
         y_min = min(y0, y1)
 
         # Starts the timer for the critical loop
-        start_time = decimal.Decimal(time.perf_counter())
+        start_time = Decimal(time.perf_counter())
 
         # Critical loop
         for y_coord in range(abs(y1 - y0)):
             image.putpixel((x0, y_min + y_coord), (r, g, b))
         
         # Stops timer
-        end_time = decimal.Decimal(time.perf_counter())
+        end_time = Decimal(time.perf_counter())
 
-        total_time = end_time - start_time
-        draw_time += total_time
+        # Calculates total time
+        draw_time += (end_time - start_time)
     
     # Else, the line is not vertical
     else:
@@ -70,7 +70,7 @@ def draw_line(x0, y0, x1, y1):
             x_min = min(x0, x1)
 
             # Starts timer
-            start_time = decimal.Decimal(time.perf_counter())
+            start_time = Decimal(time.perf_counter())
 
             # Critical loop
             for x_coord in range(abs(x1 - x0) + 1):
@@ -80,17 +80,16 @@ def draw_line(x0, y0, x1, y1):
                 image.putpixel((x, y), (r, g, b))
             
             # Stops timer
-            end_time = decimal.Decimal(time.perf_counter())
+            end_time = Decimal(time.perf_counter())
 
-            total_time = end_time - start_time
-            draw_time += total_time
+            draw_time += (end_time - start_time)
 
         # Check if |x1 - x0| < |y1 - y0|
         elif (abs(x1 - x0) < abs(y1 - y0)):
             y_min = min(y0, y1)
 
             # Starts timer
-            start_time = decimal.Decimal(time.perf_counter())
+            start_time = Decimal(time.perf_counter())
 
             # Critical loop
             for y_coord in range(abs(y1 - y0) + 1):
@@ -100,10 +99,9 @@ def draw_line(x0, y0, x1, y1):
                 image.putpixel((x, y), (r, g, b))
             
             # Stops timer
-            end_time = decimal.Decimal(time.perf_counter())
+            end_time = Decimal(time.perf_counter())
 
-            total_time = end_time - start_time
-            draw_time += total_time
+            draw_time += (end_time - start_time)
 
     return draw_time
 
@@ -112,6 +110,7 @@ total = 0
 total += draw_line(50, 100, 50, 200)
 total += draw_line(75, 75, 237, 100)
 total += draw_line(85, 45, 337, 20)
+total += draw_line(30, 30, 80, 30)
 
 print(f'Loop took {total} seconds long.')
 image.show()
