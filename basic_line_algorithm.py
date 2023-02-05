@@ -82,6 +82,7 @@ def draw_line(x0, y0, x1, y1):
             # Stops timer
             end_time = Decimal(time.perf_counter())
 
+            # Calculates total time
             draw_time += (end_time - start_time)
 
         # Check if |x1 - x0| < |y1 - y0|
@@ -101,6 +102,7 @@ def draw_line(x0, y0, x1, y1):
             # Stops timer
             end_time = Decimal(time.perf_counter())
 
+            # Calculates total time
             draw_time += (end_time - start_time)
 
     return draw_time
