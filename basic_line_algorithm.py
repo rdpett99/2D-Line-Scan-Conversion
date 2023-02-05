@@ -61,7 +61,7 @@ def draw_line(x0, y0, x1, y1):
     
     # Else, the line is not vertical
     else:
-        
+
         # Calculates the slope and y-intercept
         slope = (y1 - y0) / (x1 - x0)
         y_intercept = y1 - (slope * x1)
@@ -108,6 +108,7 @@ def draw_line(x0, y0, x1, y1):
 
     return draw_time
 
+'''
 # Debug
 total = 0
 total += draw_line(50, 100, 50, 200)
@@ -117,3 +118,4 @@ total += draw_line(30, 30, 80, 30)
 
 print(f'Loop took {total} seconds long.')
 image.show()
+'''

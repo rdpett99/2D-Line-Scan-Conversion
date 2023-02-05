@@ -155,6 +155,7 @@ def bresenham_alg(x0, y0, x1, y1):
 
     return draw_time
 
+'''
 # Debug
 total = 0
 total += bresenham_alg(50, 100, 50, 200)
@@ -164,3 +165,4 @@ total += bresenham_alg(30, 30, 80, 30)
 
 print(f'Loop took {total} seconds long.')
 image.show()
+'''
