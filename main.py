@@ -29,7 +29,8 @@ if specified_alg == 'basic':
         x1 = randint(0, 499)
         y1 = randint(0, 499)
         timer += basic.draw_line(x0, y0, x1, y1)
-    print(f"\nAlgorithm took {timer} seconds long.")
+    print(f"\nBasic Line-Drawing Algorithm took {timer} seconds long.")
+    basic.image.save('images/basic_line_results.png')
     basic.image.show()
 elif specified_alg == 'bres':
     timer = 0
@@ -39,7 +40,8 @@ elif specified_alg == 'bres':
         x1 = randint(0, 499)
         y1 = randint(0, 499)
         timer += bresenham.bresenham_alg(x0, y0, x1, y1)
-    print(f"\nAlgorithm took {timer} seconds long.")
+    print(f"\nBresenham's Line-Drawing Algorithm took {timer} seconds long.")
+    bresenham.image.save('images/bresenham_line_results.png')
     bresenham.image.show()
 else:
     print("\nInvalid algorithm. Try again.")
